@@ -33,6 +33,7 @@ Verified machine learning implementations completed on [TensorTonic](https://www
 | Tabular Q-Learning (Single Update) | Perform one tabular Q-learning update from reward, discount, learning rate, and the best next-state value. | https://www.tensortonic.com/problems/q-learning-update |
 | Monte Carlo Policy Evaluation | Estimate policy state values from complete sampled returns without requiring an environment transition model. | https://www.tensortonic.com/problems/rl-monte-carlo-policy-evaluation |
 | Softmax (Boltzmann) Exploration | Convert action values into a numerically stable Boltzmann exploration distribution controlled by temperature. | https://www.tensortonic.com/problems/rl-softmax-exploration |
+| SARSA Update | Perform one on-policy SARSA action-value update from the observed reward and next selected action. | https://www.tensortonic.com/problems/sarsa-update |
 | Implement Sigmoid in NumPy | Implement a vectorized sigmoid activation in NumPy for scalars, lists, vectors, and matrices, including large positive and negative inputs. | https://www.tensortonic.com/problems/sigmoid-numpy |
 | Value Iteration Step | Perform one Bellman optimality update across states and actions for a tabular Markov decision process. | https://www.tensortonic.com/problems/value-iteration-step |
 
