@@ -42,6 +42,7 @@ Verified machine learning implementations completed on [TensorTonic](https://www
 | Generalized Advantage Estimation (GAE) | Compute generalized advantage estimates by recursively combining rewards, value predictions, discounts, and GAE decay. | https://www.tensortonic.com/problems/rl-generalized-advantage-estimation |
 | GRPO Group-Relative Advantage | Normalize rewards within each GRPO group using its mean and standard deviation, including zero-variance handling. | https://www.tensortonic.com/problems/rl-grpo-group-relative-advantage |
 | Monte Carlo Policy Evaluation | Estimate policy state values from complete sampled returns without requiring an environment transition model. | https://www.tensortonic.com/problems/rl-monte-carlo-policy-evaluation |
+| Policy Iteration | Policy iteration solves a finite Markov Decision Process by alternating two steps until the greedy policy stops changing. | https://www.tensortonic.com/problems/rl-policy-iteration |
 | REINFORCE with Baseline | Implement REINFORCE with Baseline, and return the scalar loss as a Python float, rounded to 4 decimals. | https://www.tensortonic.com/problems/rl-reinforce-with-baseline |
 | PPO with Reference-Policy KL | Compute a PPO policy objective with reference-policy KL regularization for stable RLHF optimization. | https://www.tensortonic.com/problems/rl-rlhf-ppo-kl-loss |
 | Softmax (Boltzmann) Exploration | Convert action values into a numerically stable Boltzmann exploration distribution controlled by temperature. | https://www.tensortonic.com/problems/rl-softmax-exploration |
