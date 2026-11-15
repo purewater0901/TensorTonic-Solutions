@@ -13,20 +13,12 @@ def policy_iteration(P: list, R: list, gamma: float, eval_tol: float = 1e-8, max
 
     for iteration in range(max_iters):
         # value update
-        while True:
-            old_values = values.copy()
-            for state in range(num_states):
-                action = policy[state]
-                target_value = 0.0
-                for next_state in range(num_states):
-                    reward = R[state][action][next_state]
-                    p_trans = P[state][action][next_state]
-                    target_value += p_trans * (reward + gamma * old_values[next_state])
-                values[state] = target_value
+        P_pi = P[np.arange(num_states), policy] # (S, S)
+        R_pi = R[np.arange(num_states), policy] # (S, S)
+        r_pi = np.sum(P_pi * R_pi, axis=-1)
+        values = np.linalg.solve(np.eye(num_states) - gamma*P_pi, r_pi)
 
-            if np.max(np.abs(values - old_values)) < eval_tol:
-                break
-
+        # policy improvement
         old_policy = policy.copy()
         for state in range(num_states):
             best_val = -np.inf
