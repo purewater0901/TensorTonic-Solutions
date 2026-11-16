@@ -50,6 +50,7 @@ Verified machine learning implementations completed on [TensorTonic](https://www
 | Value Iteration | Run value iteration to convergence for a finite MDP, then extract the greedy optimal policy with stable tie handling. | https://www.tensortonic.com/problems/rl-value-iteration |
 | SARSA Update | Perform one on-policy SARSA action-value update from the observed reward and next selected action. | https://www.tensortonic.com/problems/sarsa-update |
 | Implement Sigmoid in NumPy | Implement a vectorized sigmoid activation in NumPy for scalars, lists, vectors, and matrices, including large positive and negative inputs. | https://www.tensortonic.com/problems/sigmoid-numpy |
+| Implement a Simple CNN Layer (NumPy) | Implement a NumPy CNN layer forward pass with batched valid convolution across channels and bias addition. | https://www.tensortonic.com/problems/simple-cnn-layer |
 | Value Iteration Step | Perform one Bellman optimality update across states and actions for a tabular Markov decision process. | https://www.tensortonic.com/problems/value-iteration-step |
 | Token and Learned Position Embeddings | Build GPT-2 input representations by summing learned token embeddings with learned positional embeddings. | https://www.tensortonic.com/research/gpt2/gpt2-embedding |
 
