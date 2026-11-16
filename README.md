@@ -53,6 +53,7 @@ Verified machine learning implementations completed on [TensorTonic](https://www
 | Implement a Simple CNN Layer (NumPy) | Implement a NumPy CNN layer forward pass with batched valid convolution across channels and bias addition. | https://www.tensortonic.com/problems/simple-cnn-layer |
 | Value Iteration Step | Perform one Bellman optimality update across states and actions for a tabular Markov decision process. | https://www.tensortonic.com/problems/value-iteration-step |
 | Token and Learned Position Embeddings | Build GPT-2 input representations by summing learned token embeddings with learned positional embeddings. | https://www.tensortonic.com/research/gpt2/gpt2-embedding |
+| Greedy Autoregressive Decoding | Implement GPT-2 greedy decoding by repeatedly selecting the highest-logit next token from the model output. | https://www.tensortonic.com/research/gpt2/gpt2-greedy-decode |
 
 View my verified ML profile: [TensorTonic profile](https://www.tensortonic.com/profile/purewater0901)
 <!-- tensortonic:end -->
