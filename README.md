@@ -54,6 +54,7 @@ Verified machine learning implementations completed on [TensorTonic](https://www
 | Value Iteration Step | Perform one Bellman optimality update across states and actions for a tabular Markov decision process. | https://www.tensortonic.com/problems/value-iteration-step |
 | Token and Learned Position Embeddings | Build GPT-2 input representations by summing learned token embeddings with learned positional embeddings. | https://www.tensortonic.com/research/gpt2/gpt2-embedding |
 | Greedy Autoregressive Decoding | Implement GPT-2 greedy decoding by repeatedly selecting the highest-logit next token from the model output. | https://www.tensortonic.com/research/gpt2/gpt2-greedy-decode |
+| Temperature and Top-k Sampling | Implement GPT-2 top-k sampling with temperature scaling, probability normalization, and seeded token selection. | https://www.tensortonic.com/research/gpt2/gpt2-topk-sampling |
 
 View my verified ML profile: [TensorTonic profile](https://www.tensortonic.com/profile/purewater0901)
 <!-- tensortonic:end -->
