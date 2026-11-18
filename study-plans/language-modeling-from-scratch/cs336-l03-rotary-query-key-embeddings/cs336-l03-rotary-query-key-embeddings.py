@@ -7,27 +7,27 @@ def rotary_embed(
     """
     Returns q_rotated and k_rotated tensors in a dictionary.
     """
-    # q: (B, H, S, D)
-    # k: (B, H, S, D)
-    # positions: (B, S) -> (B, 1, S, 1)
-    # positions: (S) -> (1, 1, S, 1)
+    def rotate(x, cos, sin):
+        x_even = x[..., 0::2]
+        x_odd = x[..., 1::2]
+        x_rot_even = x_even * cos - x_odd * sin # (..., D//2)
+        x_rot_odd = x_even * sin + x_odd * cos # (..., D//2)
+        x_rot = torch.stack([x_rot_even, x_rot_odd], dim=-1)
+        x_rot = x_rot.reshape(x.shape)
+        return x_rot.to(x.dtype)
+
     if positions.ndim == 1:
         position_values = positions.float().reshape(1, 1, -1, 1)
     else:
         position_values = positions.float().reshape(positions.shape[0], 1, positions.shape[1], 1)
-    
+
     angles = position_values * inv_freq.float().reshape(1, 1, 1, -1)
-    cos = torch.cos(angles) # (1, 1, S, 1)
-    sin = torch.sin(angles) # (1, 1, S, 1)
+    cos = torch.cos(angles)
+    sin = torch.sin(angles)
 
-    def rotate(x):
-        x_float = x.float()
-        even = x_float[..., 0::2] # (B, H, S, D//2)
-        odd = x_float[..., 1::2] # (B, H, S, D//2)
-        rotated_even = even * cos - odd * sin
-        rotated_odd = even * sin + odd * cos
-        res = torch.stack((rotated_even, rotated_odd), dim=-1) # (B, H, S, D//2, 2)
-        res = res.flatten(-2)
-        return res.to(x.dtype)
+    q_rotated = rotate(q, cos, sin)
+    k_rotated = rotate(k, cos, sin)
 
-    return {"q_rotated": rotate(q), "k_rotated": rotate(k)}
+    return {"q_rotated": q_rotated, "k_rotated": k_rotated}
+
+    
