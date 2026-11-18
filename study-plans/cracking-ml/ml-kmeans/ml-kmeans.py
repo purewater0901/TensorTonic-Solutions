@@ -4,36 +4,36 @@ def kmeans(X: list, k: int, max_iters: int = 100, seed: int = 42) -> tuple:
     """
     Returns cluster labels and the final centroid matrix.
     """
-    def find_min_idx(X, centroids):
-        dist = X[:, None, :] - centroids[None, :, :] # (B, K, D)
-        dist = np.linalg.norm(dist, axis=-1) # (B, K)
-        min_ids = np.argmin(dist, axis=-1) # (B, )
-        return min_ids # (B, )
+    def find_min_idx(x, centroids):
+        # x (B, D)
+        # centroids (K, D)
+        diff = x[:, None, :] - centroids[None, :, :] # (B, K, D)
+        dist = np.linalg.norm(diff, axis=-1) # (B, K)
+        min_ids = np.argmin(dist, axis=-1) # (B,)
+        return min_ids
 
-    rng = np.random.RandomState(seed)
     X = np.array(X, dtype=np.float64)
-    B = len(X)
-    init_ids = rng.choice(B, (k, ), replace=False)
-    centroids = X[init_ids, :]
+    rng = np.random.RandomState(seed)
+    B, D = X.shape
+    
+    init_ids = rng.choice(B, size=(k, ), replace=False)
+    centroids = X[init_ids]
 
-    for iteration in range(max_iters):
-        min_ids = find_min_idx(X, centroids)
+    for _ in range(max_iters):
+        old_centroids = centroids.copy()
+        min_ids = find_min_idx(X, old_centroids) # (B, )
 
-        new_centroids = centroids.copy()
-        for i in range(k):
-            mask = min_ids == i # (B, )
-            
+        for id in range(k):
+            mask = id == min_ids
             if not mask.any():
                 continue
+            target_points = X[mask] # (M, D)
+            centroids[id] = np.mean(target_points, axis=0)
 
-            target_points = X[mask, :] # (Bm, D)
-            new_centroids[i] = np.mean(target_points, axis=0)
-
-        if np.allclose(new_centroids, centroids):
-            centroids = new_centroids
+        if np.allclose(old_centroids, centroids):
             break
 
-        centroids = new_centroids
+    return find_min_idx(X, centroids), centroids
+    
 
-    min_ids = find_min_idx(X, centroids)
-    return min_ids.tolist(), np.round(centroids, 4).tolist()
+   
