@@ -6,8 +6,9 @@ def softmax_with_sinks(scores: torch.Tensor, sinks: torch.Tensor) -> torch.Tenso
     """
     # scores (H, Tq, Tk)
     # sinks (H)
-    max_logits = torch.max(scores, dim=-1, keepdim=True).values
-    shifted_logits = scores - max_logits
-    exp_ = torch.exp(shifted_logits) # (H, Tq, Tk)
-    outputs = exp_ / (torch.sum(exp_, dim=-1, keepdim=True) + torch.exp(sinks[:, None, None] - max_logits))
-    return outputs
+    H, Tq, Tk = scores.shape
+    sinks = sinks[:, None, None].expand(H, Tq, 1)
+    logits = torch.cat([scores, sinks], dim=-1)
+    
+    weights = torch.softmax(logits, dim=-1)
+    return weights[..., :-1]
